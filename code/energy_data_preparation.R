@@ -99,8 +99,8 @@ all_countries <- country_range %>%
   select(country, country_name, everything())
 
 country_totals <- all_countries %>% filter(level == "Total")
-country_production <- all_countries %>% filter(level != "Total")
+energy_types <- all_countries %>% filter(level != "Total")
 
 # Save to CSV ----
-write.csv(country_totals, "data/EnergyProductionByCountry_Europe2016to2018.csv", row.names = FALSE)
-write.csv(country_production, "data/EnergyTypesAndSources_Europe2016to2018.csv", row.names = FALSE)
+write.csv(country_totals, "data/country_totals.csv", row.names = FALSE)
+write.csv(energy_types, "data/energy_types.csv", row.names = FALSE)
