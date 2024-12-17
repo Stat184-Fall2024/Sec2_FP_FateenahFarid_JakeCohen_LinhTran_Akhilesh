@@ -31,8 +31,8 @@ We present the guidelines as a checklist in this README. This means that your te
 - [X] Locate appropriate data sources for your project.
   - [X] Your main data source may __not__ be one that we used in class nor be found in any R package.
   - [X] Supplementary data sources may come from anywhere.
-- [ ] Read in your data and perform any necessary data wrangling and cleaning.
-- [ ] Conduct Exploratory Data Analysis.
+- [X] Read in your data and perform any necessary data wrangling and cleaning.
+- [X] Conduct Exploratory Data Analysis.
 - [ ] Prepare a reproducible report.
   - [ ] Use a QMD file; the output type is PDF.
   - [ ] The report should be well organized with section headings
@@ -42,17 +42,17 @@ We present the guidelines as a checklist in this README. This means that your te
       ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
       ```
 ````
-  - [ ] State your research questions and explain them.
+  - [X] State your research questions and explain them.
   - [X] Describe the provenance of your data. That is, where did you get the data, who collected the data, for what purpose, who/what make up the cases.
   - [X] Explain how your data meet the FAIR and/or CARE Principles.
   - [X] Describe what attributes you'll focus your analysis on (mention if they are part of your data sets or if you created them out of your data sets).
-  - [ ] Create multiple data visualizations (tables and figures) that assist both the team and readers in understanding the data.
-    - [ ] Data visualizations should show a variety of your skills and geometries.
+  - [X] Create multiple data visualizations (tables and figures) that assist both the team and readers in understanding the data.
+    - [X] Data visualizations should show a variety of your skills and geometries.
     - [ ] __Optional__: If your research question/data make sense to do so, try creating a map.
-    - [ ] Data visualizations should be appropriately sized--not too small and not too big.
-    - [ ] Figures and Tables should have appropriate captions and appropriately cross-referenced in the body of your report.
-    - [ ] Your team must produce at least one table that is *not* a display of raw data.
-    - [ ] Your team must produce at least one plot/graph.
+    - [X] Data visualizations should be appropriately sized--not too small and not too big.
+    - [X] Figures and Tables should have appropriate captions and appropriately cross-referenced in the body of your report.
+    - [X] Your team must produce at least one table that is *not* a display of raw data.
+    - [X] Your team must produce at least one plot/graph.
     - [ ] There should be narrative text helping readers to better understand what the visualization helps them to learn about the data and context.
   - [ ] Your report should narrative text (beyond explaining tables and figures) that explains the context and helps the reader make sense of what is going on.
   - [ ] __Optional:__ For those who want to challenge themselves further, feel free to include a section on using other statistical methods such as hypothesis testing, regression, ANOVA, or machine learning--see Chapter 18 of the Data Computing eBook.
