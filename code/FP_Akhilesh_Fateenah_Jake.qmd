@@ -1,0 +1,105 @@
+---
+title: "Hourly Weather Data Analysis in Newark, New Jersey"
+author: Akhilesh Nimse, Fateenah Farid, Jake Cohen
+format: pdf
+code-fold: true
+---
+
+## Code Appendix
+
+```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+# 1. Load Packages
+library(tidyverse)
+library(rvest)
+library(knitr)
+
+# 2a. Get newark2019 data
+path1 <- "/Users/fateenahs./Desktop/STAT184/newark_hourly_weather_2019.csv"
+newark2019 <- read.csv(path1)
+
+# 2b. Get newark2023 data
+path2 <- "/Users/fateenahs./Desktop/STAT184/hourly_weather_newark_2023.csv"
+newark2023 <- read.csv(path2)
+
+# 3a. Normalizing Columns for Newark in 2019
+newark2019$Time <- as.POSIXct(newark2019$Time, format = "%Y-%m-%d %H:%M") # Set format for Time column
+newark2019$Temperature <- as.integer(gsub("F", "", newark2019$Temperature)) # Remove F from Temperature column and convert character to integer
+newark2019$Humidity <- as.integer(gsub("%", "", newark2019$Humidity))
+newark2019$Precipitation <- as.numeric(gsub("in", "", newark2019$Precipitation))
+
+# 3b. Normalizing Columns for Newark in 2023
+newark2023$Time <- as.POSIXct(newark2023$Time, format = "%Y-%m-%d %H:%M") # Set format for Time column
+newark2023$Temperature <- as.integer(gsub("F", "", newark2023$Temperature)) # Remove F from Temperature column and convert character to integer
+newark2023$Humidity <- as.integer(gsub("%", "", newark2023$Humidity))
+newark2023$Precipitation <- as.numeric(gsub("in", "", newark2023$Precipitation))
+
+# 4a. Calculate Monthly Average Temperature in Newark for year 2019
+monthlyAvg2019 <- newark2019 %>%
+  drop_na() %>%
+  group_by(month = format(Time, "%m")) %>%
+  summarize(avg_temperature = mean(Temperature, na.rm = TRUE))
+
+# 4b. Calculate Monthly Average Temperature in Newark for year 2023
+monthlyAvg2023 <- newark2023 %>%
+  drop_na() %>%
+  group_by(month = format(Time, "%m")) %>%
+  summarize(avg_temperature = mean(Temperature, na.rm = TRUE))
+
+# 4c. Generate bar graphs for Average Monthly Temperatures in Newark, 2019
+ggplot(monthlyAvg2019, aes(x = as.numeric(month), y = avg_temperature)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  scale_x_continuous(breaks = 1:12, labels = month.abb) +
+  labs(title = "Average Monthly Temperatures in 2019, Newark",
+       x = "Month",
+       y = "Average Temperature (°C)") +
+  theme_minimal()
+
+# 4d. Generate bar graphs for Average Monthly Temperatures in Newark, 2023
+ggplot(monthlyAvg2023, aes(x = as.numeric(month), y = avg_temperature)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  scale_x_continuous(breaks = 1:12, labels = month.abb) +
+  labs(title = "Average Monthly Temperatures in 2023, Newark",
+       x = "Month",
+       y = "Average Temperature (°C)") +
+  theme_minimal()
+
+# 5a. Add a Season Column
+assign_season <- function(month) {
+  ifelse(month %in% c(12, 1, 2), "Winter",
+         ifelse(month %in% c(3, 4, 5), "Spring",
+                ifelse(month %in% c(6, 7, 8), "Summer", "Fall")
+         )
+  )
+}
+
+# 5b. Apply the function to create a "Season" column
+newark2019$Season <- assign_season(as.numeric(format(newark2019$Time, "%m")))
+newark2023$Season <- assign_season(as.numeric(format(newark2023$Time, "%m")))
+
+# 5c. Calculate Average Humidity by Season
+humidity2019 <- newark2019 %>%
+  drop_na() %>%
+  group_by(Season) %>%
+  summarize(avg_humidity = mean(Humidity, na.rm = TRUE))
+
+humidity2023 <- newark2023 %>%
+  drop_na() %>%
+  group_by(Season) %>%
+  summarize(avg_humidity = mean(Humidity, na.rm = TRUE))
+
+# 5d. Add a year column to differentiate the datasets
+humidity2019$Year <- 2019
+humidity2023$Year <- 2023
+
+# 5e. Combine both years into one data frame
+combined_humidity <- rbind(humidity2019, humidity2023)
+
+# 5f. Plot Double Bar Graph
+ggplot(combined_humidity, aes(x = Season, y = avg_humidity, fill = as.factor(Year))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Seasonal Humidity Comparison in Newark, New Jersey: 2019 vs 2023",
+       x = "Season",
+       y = "Average Humidity (%)",
+       fill = "Year") +
+  theme_minimal()
+```
