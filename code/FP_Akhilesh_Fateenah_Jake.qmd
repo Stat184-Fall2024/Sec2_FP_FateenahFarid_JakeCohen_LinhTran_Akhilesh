@@ -4,6 +4,7 @@ author: Akhilesh Nimse, Fateenah Farid, Jake Cohen
 format: pdf
 code-fold: false
 ---
+
 ## Introduction
 
 Climate change is increasingly recognized as one of the defining challenges of the 21st century, affecting communities on local, national, and global scales. In this report, we analyze key climate patterns in Newark, New Jersey, in 2019 and 2023, focusing on changes in temperature, humidity, and precipitation. This analysis aims to determine whether Newark is experiencing noticeable shifts that align with broader trends in climate change.
@@ -12,118 +13,154 @@ Climate change is increasingly recognized as one of the defining challenges of t
 
 Our investigation is guided by three research questions:
 
-- **Have daily temperatures been increasing in the last 4 years?**  
-  Rising temperatures are a hallmark of climate change. By examining daily temperature trends, we aim to identify if Newark has experienced a steady increase, periodic anomalies, or extreme temperature events over the analyzed period.
+-   **Have daily temperatures been increasing in the last 4 years?**\
+    Rising temperatures are a hallmark of climate change. By examining daily temperature trends, we aim to identify if Newark has experienced a steady increase, periodic anomalies, or extreme temperature events over the analyzed period.
 
-- **How does humidity fluctuate with the seasons, and has it been moving in a pattern in the last 4 years?**  
-  Humidity levels are closely tied to temperature and seasonal weather patterns. Understanding how humidity fluctuates across seasons, and whether these fluctuations show systematic changes over the years, provides insight into the broader impacts of a warming climate.
+-   **How does humidity fluctuate with the seasons, and has it been moving in a pattern in the last 4 years?**\
+    Humidity levels are closely tied to temperature and seasonal weather patterns. Understanding how humidity fluctuates across seasons, and whether these fluctuations show systematic changes over the years, provides insight into the broader impacts of a warming climate.
 
-- **How have precipitation levels changed in the last 4 years?**  
-  Changes in precipitation patterns can lead to severe consequences, such as flooding or droughts. By assessing variations in Newark's precipitation levels, we seek to uncover potential shifts in the frequency, intensity, or timing of rainfall.
-  
+-   **How have precipitation levels changed in the last 4 years?**\
+    Changes in precipitation patterns can lead to severe consequences, such as flooding or droughts. By assessing variations in Newark's precipitation levels, we seek to uncover potential shifts in the frequency, intensity, or timing of rainfall.
+
 ## Dataset Description
+
 Data source: https://www.wunderground.com/history/daily/us/nj/newark/KEWR/date/2023-1-1
-  
-The .csv dataset is obtained by Akhilesh from another course, DS340W. The dataset was given by a guest instructor for the course and is sourced from the link above. The dataset used for this project contains hourly weather observations recorded at Newark, New Jersey in 2019 and 2023. 
+
+The .csv dataset is obtained by Akhilesh from another course, DS340W. The dataset was given by a guest instructor for the course and is sourced from the link above. The dataset used for this project contains hourly weather observations recorded at Newark, New Jersey in 2019 and 2023.
 
 The dataset includes the following fields:
 
-1. **Time**: Timestamp indicating when the observation was recorded.
-2. **Temperature**: Ambient temperature during the observation (in Fahrenheit).
-3. **Dew Point**: Temperature at which air becomes saturated (in Fahrenheit).
-4. **Humidity**: Relative humidity as a percentage.
-5. **Wind**: Wind direction.
-6. **Wind Speed**: Speed of the wind (in miles per hour).
-7. **Wind Gust**: Maximum wind gust recorded (in miles per hour).
-8. **Pressure**: Atmospheric pressure (in inches).
-9. **Precipitation**: Amount of precipitation recorded (in inches).
+1.  **Time**: Timestamp indicating when the observation was recorded.
+2.  **Temperature**: Ambient temperature during the observation (in Fahrenheit).
+3.  **Dew Point**: Temperature at which air becomes saturated (in Fahrenheit).
+4.  **Humidity**: Relative humidity as a percentage.
+5.  **Wind**: Wind direction.
+6.  **Wind Speed**: Speed of the wind (in miles per hour).
+7.  **Wind Gust**: Maximum wind gust recorded (in miles per hour).
+8.  **Pressure**: Atmospheric pressure (in inches).
+9.  **Precipitation**: Amount of precipitation recorded (in inches).
 10. **Condition**: General weather conditions such as rain or fog.
 
-
 ## Data Provenance
+
 The data was sourced from public weather records for Newark, compiled to facilitate analyses of weather patterns and conditions. The observations were collected by automated weather stations and human observers under the guidance of meteorological organizations. The dataset provides detailed hourly weather statistics, making it suitable for use in weather trend analysis and forecasting models.
 
 The dataset adheres to the FAIR principles by being well-organized and easy to locate, with clear column names and standardized formats for all weather-related variables. It is accessible in a widely used CSV format, which ensures compatibility with a variety of analytical tools and programming environments. The use of standardized units like Fahrenheit for temperature and percentages for humidity ensures that the dataset is interoperable and can be easily integrated with other similar datasets. Additionally, the dataset is reusable due to its completeness and clear documentation, making it suitable for a wide range of weather-related studies.
 
 In terms of the CARE principles, the dataset promotes collective benefit by contributing to community understanding of weather patterns and aiding in climate-related decision-making. It respects authority to control by being sourced from established meteorological records, ensuring data accuracy and reliability. Responsibility is upheld through ethical use, as the data contains no private or sensitive information. Finally, the dataset aligns with ethical standards, as it was collected transparently and with the intent to support public and scientific interests without causing harm.
 
-For our analysis, we will focus on a combination of attributes directly available in the dataset and additional attributes derived to enhance our insights. Key attributes include Temperature, which serves as a critical metric for identifying trends and fluctuations over time, and Precipitation, essential for assessing rainfall intensity and frequency. We will also examine Humidity to understand atmospheric moisture levels and its correlation with other variables, as well as Wind Speed and Wind Direction to analyze wind patterns and shifts in dominant directions. 
+For our analysis, we will focus on a combination of attributes directly available in the dataset and additional attributes derived to enhance our insights. Key attributes include Temperature, which serves as a critical metric for identifying trends and fluctuations over time, and Precipitation, essential for assessing rainfall intensity and frequency. We will also examine Humidity to understand atmospheric moisture levels and its correlation with other variables, as well as Wind Speed and Wind Direction to analyze wind patterns and shifts in dominant directions.
 
 ## Methodology
 
-1. **Load Required Packages**:
-   - Loaded necessary libraries: `tidyverse`, `rvest`, and `knitr`.
+1.  **Load Required Packages**:
+    -   Loaded necessary libraries: `tidyverse`, `rvest`, and `knitr`.
+2.  **Data Import**:
+    -   Imported the 2019 weather data from `newark_hourly_weather_2019.csv`.
+    -   Imported the 2023 weather data from `hourly_weather_newark_2023.csv`.
+3.  **Data Normalization**:
+    -   Converted `Time` columns to `POSIXct` format for proper date-time handling.
+    -   Cleaned and converted `Temperature`, `Humidity`, and `Precipitation` columns:
+        -   Removed units (e.g., "F", "%", "in") from values.
+        -   Converted them to appropriate numeric formats.
+4.  **Monthly Average Temperatures**:
+    -   Calculated average monthly temperatures for both 2019 and 2023 using `group_by` and `summarize`.
+    -   Generated bar graphs to visualize average monthly temperatures for each year.
+5.  **Seasonal Humidity Analysis**:
+    -   Created a helper function to assign seasons based on months.
+    -   Applied the function to generate a "Season" column for each dataset.
+    -   Calculated average humidity by season for both years.
+    -   Combined seasonal humidity data for 2019 and 2023.
+    -   Plotted a double bar graph to compare seasonal humidity between 2019 and 2023.
+6.  **Monthly Precipitation Analysis**:
+    -   Extracted the month names from the `Time` column for each dataset.
+    -   Calculated average monthly precipitation for 2019 and 2023.
+    -   Combined precipitation data for both years into a single table.
+    -   Used the `knitr::kable` function to display the summarized table of monthly average precipitation.
 
-2. **Data Import**:
-   - Imported the 2019 weather data from `newark_hourly_weather_2019.csv`.
-   - Imported the 2023 weather data from `hourly_weather_newark_2023.csv`.
+## Data Exploration
 
-3. **Data Normalization**:
-   - Converted `Time` columns to `POSIXct` format for proper date-time handling.
-   - Cleaned and converted `Temperature`, `Humidity`, and `Precipitation` columns:
-     - Removed units (e.g., "F", "%", "in") from values.
-     - Converted them to appropriate numeric formats.
+::: {#fig-avg-temp-1}
+![](images/Avg%20Monthly%20Temperatures%20in%202019,%20Newark.png){fig-align="center" width="13cm"}
 
-4. **Monthly Average Temperatures**:
-   - Calculated average monthly temperatures for both 2019 and 2023 using `group_by` and `summarize`.
-   - Generated bar graphs to visualize average monthly temperatures for each year.
+Average Monthly Temperatures in 2019, Newark
+:::
 
-5. **Seasonal Humidity Analysis**:
-   - Created a helper function to assign seasons based on months.
-   - Applied the function to generate a "Season" column for each dataset.
-   - Calculated average humidity by season for both years.
-   - Combined seasonal humidity data for 2019 and 2023.
-   - Plotted a double bar graph to compare seasonal humidity between 2019 and 2023.
+::: {#fig-avg-temp-2}
+![](images/Avg%20Monthly%20Temperatures%20in%202023,%20Newark-01.png){fig-align="center" width="13cm"}
 
-6. **Monthly Precipitation Analysis**:
-   - Extracted the month names from the `Time` column for each dataset.
-   - Calculated average monthly precipitation for 2019 and 2023.
-   - Combined precipitation data for both years into a single table.
-   - Used the `knitr::kable` function to display the summarized table of monthly average precipitation.
+Average Monthly Temperatures in 2023, Newark
+:::
 
-## Data Explorations and Discussions
+::: {#fig-avg-seasonal-humid}
+![](images/Seasonal%20Humidity%20Comparison%20in%202019%20and%202023.png){fig-align="center" width="13cm"}
 
-**Average Monthly Temperatures: Newark 2019 vs 2023**
+Average Seasonal Humidity in Newark: 2019 vs 2023
+:::
 
-These two bar charts compare the average monthly temperatures in Newark for the years 2019 and 2023. Both charts exhibit a similar seasonal pattern, where temperatures are lowest during the winter months (January and December) and peak in the summer (July).
+::: {#fig-avg-monthly-precip}
+|   Month   | Average Precipitation in 2019 (inches) | Average Precipitation in 2023 (inches) |
+|:-----------:|:----------------------------:|:----------------------------:|
+|  January  |               0.0058343                |               0.0058219                |
+| February  |               0.0072243                |               0.0024226                |
+|   March   |               0.0070905                |               0.0045728                |
+|   April   |               0.0069412                |               0.0124396                |
+|    May    |               0.0117580                |               0.0015287                |
+|   June    |               0.0147025                |               0.0065476                |
+|   July    |               0.0180046                |               0.0156906                |
+|  August   |               0.0125858                |               0.0096849                |
+| September |               0.0038168                |               0.0097969                |
+|  October  |               0.0118586                |               0.0066002                |
+| November  |               0.0019206                |               0.0051248                |
+| December  |               0.0084946                |               0.0099652                |
+
+Average Monthly Precipitation in Newark: 2019 vs 2023
+:::
+
+## Discussions
+
+**Average Monthly Temperatures: 2019 vs 2023**
+
+Figure 1 and Figure 2 compare the average monthly temperatures in Newark for the years 2019 and 2023. Both charts exhibit a similar seasonal pattern, where temperatures are lowest during the winter months (January and December) and peak in the summer (July).
 
 In 2019, temperatures steadily rose from around 30°F in January to a peak exceeding 80°F in July, before declining back to approximately 35°F in December. In contrast, the 2023 chart shows slightly higher winter temperatures, with January averaging closer to 40°F, while the July peak remains almost the same, reaching about 80°F.
 
 This suggests a subtle warming trend in the winter months, with no significant change during the summer. While the overall seasonal pattern remains consistent, these small shifts may indicate broader climate-related changes. The comparison highlights a potential trend of increasing winter temperatures, which could warrant further study to confirm any long-term climate patterns.
 
-
 **Average Seasonal Humidity: 2019 vs 2023**
 
-This bar chart compares average seasonal humidity percentages for the years 2019 and 2023 across four seasons: Fall, Spring, Summer, and Winter.
+Figure 3 compares average seasonal humidity percentages for the years 2019 and 2023 across four seasons: Fall, Spring, Summer, and Winter.
 
-- Fall: Humidity levels for both years are identical, reaching approximately 65%.  
-- Spring: A noticeable drop is evident in 2023, where humidity decreases to around 55% compared to 63% in 2019.  
-- Summer: Humidity in 2023 is slightly lower than in 2019 but remains close, at around 64%.  
-- Winter: Both years record almost identical humidity levels, slightly above 65%.
+-   Fall: Humidity levels for both years are identical, reaching approximately 65%.\
+-   Spring: A noticeable drop is evident in 2023, where humidity decreases to around 55% compared to 63% in 2019.\
+-   Summer: Humidity in 2023 is slightly lower than in 2019 but remains close, at around 64%.\
+-   Winter: Both years record almost identical humidity levels, slightly above 65%.
 
 This comparison highlights a significant decline in Spring 2023 humidity, while the other seasons show minimal or no changes between the two years.
 
-
 **Average Monthly Precipitation: 2019 vs 2023**
 
-The table compares average monthly precipitation (in inches) for Newark in 2019 and 2023. 
+The table compares average monthly precipitation (in inches) for Newark in 2019 and 2023.
 
 In 2019, precipitation varied significantly throughout the year, peaking in July (0.018 inches) and dropping to its lowest in November (0.0019 inches). In contrast, the 2023 data reveals a notable shift in monthly precipitation patterns:
 
-- February and March 2023 experienced significantly lower values:  
-  - February: 0.0024 inches (vs 0.0072 in 2019).  
-  - March: 0.0046 inches (vs 0.0071 in 2019).  
-  These decreases suggest drier late-winter months.  
+-   February and March 2023 experienced significantly lower values:
 
-- April showed an increase in precipitation, rising from 0.0069 inches (2019) to 0.0124 inches (2023), indicating a wetter spring.  
+    -   February: 0.0024 inches (vs 0.0072 in 2019).\
+    -   March: 0.0046 inches (vs 0.0071 in 2019).\
+        These decreases suggest drier late-winter months.
 
-- May saw a steep drop in 2023:  
-  - 0.0015 inches (vs 0.0116 inches in 2019).  
+-   April showed an increase in precipitation, rising from 0.0069 inches (2019) to 0.0124 inches (2023), indicating a wetter spring.
 
-- September values nearly tripled, increasing from 0.0038 inches to 0.0098 inches.  
+-   May saw a steep drop in 2023:
 
-- July remained one of the wetter months for both years but exhibited a slight decrease in 2023:  
-  - 0.0157 inches (vs 0.018 inches in 2019).
+    -   0.0015 inches (vs 0.0116 inches in 2019).
+
+-   September values nearly tripled, increasing from 0.0038 inches to 0.0098 inches.
+
+-   July remained one of the wetter months for both years but exhibited a slight decrease in 2023:
+
+    -   0.0157 inches (vs 0.018 inches in 2019).
 
 Overall, while months like April and September experienced increased rainfall, others—particularly February, May, and July—saw noticeable reductions in 2023. This uneven distribution highlights changing precipitation patterns, which may point to evolving seasonal trends or climate variability.
 
