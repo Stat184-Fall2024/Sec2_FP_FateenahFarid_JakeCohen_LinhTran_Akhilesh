@@ -51,9 +51,38 @@ For our analysis, we will focus on a combination of attributes directly availabl
 
 ## Methodology
 
-## Data Exploration
+1. **Load Required Packages**:
+   - Loaded necessary libraries: `tidyverse`, `rvest`, and `knitr`.
 
-## Results
+2. **Data Import**:
+   - Imported the 2019 weather data from `newark_hourly_weather_2019.csv`.
+   - Imported the 2023 weather data from `hourly_weather_newark_2023.csv`.
+
+3. **Data Normalization**:
+   - Converted `Time` columns to `POSIXct` format for proper date-time handling.
+   - Cleaned and converted `Temperature`, `Humidity`, and `Precipitation` columns:
+     - Removed units (e.g., "F", "%", "in") from values.
+     - Converted them to appropriate numeric formats.
+
+4. **Monthly Average Temperatures**:
+   - Calculated average monthly temperatures for both 2019 and 2023 using `group_by` and `summarize`.
+   - Generated bar graphs to visualize average monthly temperatures for each year.
+
+5. **Seasonal Humidity Analysis**:
+   - Created a helper function to assign seasons based on months.
+   - Applied the function to generate a "Season" column for each dataset.
+   - Calculated average humidity by season for both years.
+   - Combined seasonal humidity data for 2019 and 2023.
+   - Plotted a double bar graph to compare seasonal humidity between 2019 and 2023.
+
+6. **Monthly Precipitation Analysis**:
+   - Extracted the month names from the `Time` column for each dataset.
+   - Calculated average monthly precipitation for 2019 and 2023.
+   - Combined precipitation data for both years into a single table.
+   - Used the `knitr::kable` function to display the summarized table of monthly average precipitation.
+
+## Data Explorations and Discussions
+
 **Average Monthly Temperatures: Newark 2019 vs 2023**
 
 These two bar charts compare the average monthly temperatures in Newark for the years 2019 and 2023. Both charts exhibit a similar seasonal pattern, where temperatures are lowest during the winter months (January and December) and peak in the summer (July).
