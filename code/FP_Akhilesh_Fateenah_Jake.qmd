@@ -28,6 +28,49 @@ Our investigation is guided by three research questions:
 ## Data Exploration
 
 ## Results
+**Average Monthly Temperatures: Newark 2019 vs 2023**
+
+These two bar charts compare the average monthly temperatures in Newark for the years 2019 and 2023. Both charts exhibit a similar seasonal pattern, where temperatures are lowest during the winter months (January and December) and peak in the summer (July).
+
+In 2019, temperatures steadily rose from around 30°F in January to a peak exceeding 80°F in July, before declining back to approximately 35°F in December. In contrast, the 2023 chart shows slightly higher winter temperatures, with January averaging closer to 40°F, while the July peak remains almost the same, reaching about 80°F.
+
+This suggests a subtle warming trend in the winter months, with no significant change during the summer. While the overall seasonal pattern remains consistent, these small shifts may indicate broader climate-related changes. The comparison highlights a potential trend of increasing winter temperatures, which could warrant further study to confirm any long-term climate patterns.
+
+
+**Average Seasonal Humidity: 2019 vs 2023**
+
+This bar chart compares average seasonal humidity percentages for the years 2019 and 2023 across four seasons: Fall, Spring, Summer, and Winter.
+
+- Fall: Humidity levels for both years are identical, reaching approximately 65%.  
+- Spring: A noticeable drop is evident in 2023, where humidity decreases to around 55% compared to 63% in 2019.  
+- Summer: Humidity in 2023 is slightly lower than in 2019 but remains close, at around 64%.  
+- Winter: Both years record almost identical humidity levels, slightly above 65%.
+
+This comparison highlights a significant decline in Spring 2023 humidity, while the other seasons show minimal or no changes between the two years.
+
+
+**Average Monthly Precipitation: 2019 vs 2023**
+
+The table compares average monthly precipitation (in inches) for Newark in 2019 and 2023. 
+
+In 2019, precipitation varied significantly throughout the year, peaking in July (0.018 inches) and dropping to its lowest in November (0.0019 inches). In contrast, the 2023 data reveals a notable shift in monthly precipitation patterns:
+
+- February and March 2023 experienced significantly lower values:  
+  - February: 0.0024 inches (vs 0.0072 in 2019).  
+  - March: 0.0046 inches (vs 0.0071 in 2019).  
+  These decreases suggest drier late-winter months.  
+
+- April showed an increase in precipitation, rising from 0.0069 inches (2019) to 0.0124 inches (2023), indicating a wetter spring.  
+
+- May saw a steep drop in 2023:  
+  - 0.0015 inches (vs 0.0116 inches in 2019).  
+
+- September values nearly tripled, increasing from 0.0038 inches to 0.0098 inches.  
+
+- July remained one of the wetter months for both years but exhibited a slight decrease in 2023:  
+  - 0.0157 inches (vs 0.018 inches in 2019).
+
+Overall, while months like April and September experienced increased rainfall, others—particularly February, May, and July—saw noticeable reductions in 2023. This uneven distribution highlights changing precipitation patterns, which may point to evolving seasonal trends or climate variability.
 
 ## References
 
