@@ -128,4 +128,32 @@ ggplot(combined_humidity, aes(x = Season, y = avg_humidity, fill = as.factor(Yea
        y = "Average Humidity (%)",
        fill = "Year") +
   theme_minimal()
+
+# 6a. Add Month Column
+newark2019$Month <- format(as.Date(newark2019$Time), "%B")  # Full month names
+newark2023$Month <- format(as.Date(newark2023$Time), "%B")
+
+# 6b. Calculate Average Monthly Precipitation
+precipitation2019 <- newark2019 %>%
+  drop_na() %>%
+  group_by(Month) %>%
+  summarize(avg_precipitation = mean(Precipitation, na.rm = TRUE)) %>%
+  mutate(Year = 2019)
+
+precipitation2023 <- newark2023 %>%
+  drop_na() %>%
+  group_by(Month) %>%
+  summarize(avg_precipitation = mean(Precipitation, na.rm = TRUE)) %>%
+  mutate(Year = 2023)
+
+# 6c. Combine Both Years and Format the Table
+summary_table <- merge(precipitation2019, precipitation2023, by = "Month", suffixes = c("_2019", "_2023")) %>%
+  select(Month, avg_precipitation_2019, avg_precipitation_2023) %>%
+  arrange(factor(Month, levels = month.name))  # Order by month names
+
+# 6d. Generate a Clean Table with knitr
+kable(summary_table, 
+      caption = "Monthly Average Precipitation in Newark: 2019 vs 2023", 
+      col.names = c("Month", "2019 Avg Precipitation (inches)", "2023 Avg Precipitation (inches)"),
+      align = "c")
 ```
