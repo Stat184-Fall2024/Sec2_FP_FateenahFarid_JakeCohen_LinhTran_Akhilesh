@@ -78,29 +78,38 @@ For our analysis, we will focus on a combination of attributes directly availabl
     -   Combined precipitation data for both years into a single table.
     -   Used the `knitr::kable` function to display the summarized table of monthly average precipitation.
 
-## Data Exploration
+## Data Exploration and Discussions
 
-::: {#fig-avg-temp-1}
-![](images/Avg%20Monthly%20Temperatures%20in%202019,%20Newark.png){fig-align="center" width="13cm"}
+**Average Monthly Temperatures**
 
-Average Monthly Temperatures in 2019, Newark
-:::
+![Average Monthly Temperatures in 2019, Newark](images/Avg Monthly Temperatures in 2019, Newark-01.png){fig-align="center" width="10cm"}
 
-::: {#fig-avg-temp-2}
-![](images/Avg%20Monthly%20Temperatures%20in%202023,%20Newark-01.png){fig-align="center" width="13cm"}
+![Average Monthly Temperatures in 2023, Newark](images/Avg Monthly Temperatures in 2023, 2023.png){fig-align="center" width="10cm"}
 
-Average Monthly Temperatures in 2023, Newark
-:::
+Figure 1 and Figure 2 compare the average monthly temperatures in Newark for the years 2019 and 2023. Both charts exhibit a similar seasonal pattern, where temperatures are lowest during the winter months (January and December) and peak in the summer (July).
 
-::: {#fig-avg-seasonal-humid}
-![](images/Seasonal%20Humidity%20Comparison%20in%202019%20and%202023.png){fig-align="center" width="13cm"}
+In 2019, temperatures steadily rose from around 30°F in January to a peak exceeding 80°F in July, before declining back to approximately 35°F in December. In contrast, the 2023 chart shows slightly higher winter temperatures, with January averaging closer to 40°F, while the July peak remains almost the same, reaching about 80°F.
 
-Average Seasonal Humidity in Newark: 2019 vs 2023
-:::
+This suggests a subtle warming trend in the winter months, with no significant change during the summer. While the overall seasonal pattern remains consistent, these small shifts may indicate broader climate-related changes. The comparison highlights a potential trend of increasing winter temperatures, which could warrant further study to confirm any long-term climate patterns.
+
+**Average Seasonal Humidity**
+
+![Average Seasonal Humidity in Newark: 2019 vs 2023](images/Seasonal%20Humidity%20Comparison%20in%202019%20and%202023-01.png){fig-align="center" width="13cm"}
+
+Figure 3 compares average seasonal humidity percentages for the years 2019 and 2023 across four seasons: Fall, Spring, Summer, and Winter.
+
+-   Fall: Humidity levels for both years are identical, reaching approximately 65%.
+-   Spring: A noticeable drop is evident in 2023, where humidity decreases to around 55% compared to 63% in 2019.
+-   Summer: Humidity in 2023 is slightly lower than in 2019 but remains close, at around 64%.
+-   Winter: Both years record almost identical humidity levels, slightly above 65%.
+
+This comparison highlights a significant decline in Spring 2023 humidity, while the other seasons show minimal or no changes between the two years.
+
+**Average Monthly Precipitation**
 
 ::: {#fig-avg-monthly-precip}
 |   Month   | Average Precipitation in 2019 (inches) | Average Precipitation in 2023 (inches) |
-|:-----------:|:----------------------------:|:----------------------------:|
+|:----------------:|:-------------------------:|:-------------------------:|
 |  January  |               0.0058343                |               0.0058219                |
 | February  |               0.0072243                |               0.0024226                |
 |   March   |               0.0070905                |               0.0045728                |
@@ -117,30 +126,7 @@ Average Seasonal Humidity in Newark: 2019 vs 2023
 Average Monthly Precipitation in Newark: 2019 vs 2023
 :::
 
-## Discussions
-
-**Average Monthly Temperatures: 2019 vs 2023**
-
-Figure 1 and Figure 2 compare the average monthly temperatures in Newark for the years 2019 and 2023. Both charts exhibit a similar seasonal pattern, where temperatures are lowest during the winter months (January and December) and peak in the summer (July).
-
-In 2019, temperatures steadily rose from around 30°F in January to a peak exceeding 80°F in July, before declining back to approximately 35°F in December. In contrast, the 2023 chart shows slightly higher winter temperatures, with January averaging closer to 40°F, while the July peak remains almost the same, reaching about 80°F.
-
-This suggests a subtle warming trend in the winter months, with no significant change during the summer. While the overall seasonal pattern remains consistent, these small shifts may indicate broader climate-related changes. The comparison highlights a potential trend of increasing winter temperatures, which could warrant further study to confirm any long-term climate patterns.
-
-**Average Seasonal Humidity: 2019 vs 2023**
-
-Figure 3 compares average seasonal humidity percentages for the years 2019 and 2023 across four seasons: Fall, Spring, Summer, and Winter.
-
--   Fall: Humidity levels for both years are identical, reaching approximately 65%.\
--   Spring: A noticeable drop is evident in 2023, where humidity decreases to around 55% compared to 63% in 2019.\
--   Summer: Humidity in 2023 is slightly lower than in 2019 but remains close, at around 64%.\
--   Winter: Both years record almost identical humidity levels, slightly above 65%.
-
-This comparison highlights a significant decline in Spring 2023 humidity, while the other seasons show minimal or no changes between the two years.
-
-**Average Monthly Precipitation: 2019 vs 2023**
-
-The table compares average monthly precipitation (in inches) for Newark in 2019 and 2023.
+Figure 4 compares average monthly precipitation (in inches) for Newark in 2019 and 2023.
 
 In 2019, precipitation varied significantly throughout the year, peaking in July (0.018 inches) and dropping to its lowest in November (0.0019 inches). In contrast, the 2023 data reveals a notable shift in monthly precipitation patterns:
 
@@ -166,6 +152,12 @@ Overall, while months like April and September experienced increased rainfall, o
 
 ## References
 
+1. Weather Underground. (n.d.). Historical weather data: Newark, NJ (KEWR). https://www.wunderground.com/history/daily/us/nj/newark/KEWR/date/2023-1-1
+
+2. Rahman, M. G., & Khan, M. A. H. (2025). Analysis of data cleansing methods for improving meteorological data quality: A case study. Earth Science Informatics, 18(1), 1–23. Retrieved from https://link.springer.com/article/10.1007/s12145-024-01608-9
+
+3. O'Hara, T. (2023). Crowdsourced Rainfall Data Cleaning, Validation, Visualisation, and Application (WOW) (Doctoral dissertation). Newcastle University. Retrieved from http://theses.ncl.ac.uk/jspui/handle/10443/6012
+
 ## Code Appendix
 
 ```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
@@ -183,14 +175,18 @@ path2 <- "/Users/fateenahs./Desktop/STAT184/hourly_weather_newark_2023.csv"
 newark2023 <- read.csv(path2)
 
 # 3a. Normalizing Columns for Newark in 2019
-newark2019$Time <- as.POSIXct(newark2019$Time, format = "%Y-%m-%d %H:%M") # Set format for Time column
-newark2019$Temperature <- as.integer(gsub("F", "", newark2019$Temperature)) # Remove F from Temperature column and convert character to integer
+newark2019$Time <- as.POSIXct(newark2019$Time, format = "%Y-%m-%d %H:%M") 
+# Set format for Time column
+newark2019$Temperature <- as.integer(gsub("F", "", newark2019$Temperature)) 
+# Remove F from Temperature column and convert character to integer
 newark2019$Humidity <- as.integer(gsub("%", "", newark2019$Humidity))
 newark2019$Precipitation <- as.numeric(gsub("in", "", newark2019$Precipitation))
 
 # 3b. Normalizing Columns for Newark in 2023
-newark2023$Time <- as.POSIXct(newark2023$Time, format = "%Y-%m-%d %H:%M") # Set format for Time column
-newark2023$Temperature <- as.integer(gsub("F", "", newark2023$Temperature)) # Remove F from Temperature column and convert character to integer
+newark2023$Time <- as.POSIXct(newark2023$Time, format = "%Y-%m-%d %H:%M") 
+# Set format for Time column
+newark2023$Temperature <- as.integer(gsub("F", "", newark2023$Temperature)) 
+# Remove F from Temperature column and convert character to integer
 newark2023$Humidity <- as.integer(gsub("%", "", newark2023$Humidity))
 newark2023$Precipitation <- as.numeric(gsub("in", "", newark2023$Precipitation))
 
