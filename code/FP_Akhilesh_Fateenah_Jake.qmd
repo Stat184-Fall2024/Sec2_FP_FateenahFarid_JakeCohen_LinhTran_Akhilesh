@@ -22,6 +22,32 @@ Our investigation is guided by three research questions:
   Changes in precipitation patterns can lead to severe consequences, such as flooding or droughts. By assessing variations in Newark's precipitation levels, we seek to uncover potential shifts in the frequency, intensity, or timing of rainfall.
   
 ## Dataset Description
+Data source: https://www.wunderground.com/history/daily/us/nj/newark/KEWR/date/2023-1-1
+  
+The .csv dataset is obtained by Akhilesh from another course, DS340W. The dataset was given by a guest instructor for the course and is sourced from the link above. The dataset used for this project contains hourly weather observations recorded at Newark, New Jersey in 2019 and 2023. 
+
+The dataset includes the following fields:
+
+1. **Time**: Timestamp indicating when the observation was recorded.
+2. **Temperature**: Ambient temperature during the observation (in Fahrenheit).
+3. **Dew Point**: Temperature at which air becomes saturated (in Fahrenheit).
+4. **Humidity**: Relative humidity as a percentage.
+5. **Wind**: Wind direction.
+6. **Wind Speed**: Speed of the wind (in miles per hour).
+7. **Wind Gust**: Maximum wind gust recorded (in miles per hour).
+8. **Pressure**: Atmospheric pressure (in inches).
+9. **Precipitation**: Amount of precipitation recorded (in inches).
+10. **Condition**: General weather conditions such as rain or fog.
+
+
+## Data Provenance
+The data was sourced from public weather records for Newark, compiled to facilitate analyses of weather patterns and conditions. The observations were collected by automated weather stations and human observers under the guidance of meteorological organizations. The dataset provides detailed hourly weather statistics, making it suitable for use in weather trend analysis and forecasting models.
+
+The dataset adheres to the FAIR principles by being well-organized and easy to locate, with clear column names and standardized formats for all weather-related variables. It is accessible in a widely used CSV format, which ensures compatibility with a variety of analytical tools and programming environments. The use of standardized units like Fahrenheit for temperature and percentages for humidity ensures that the dataset is interoperable and can be easily integrated with other similar datasets. Additionally, the dataset is reusable due to its completeness and clear documentation, making it suitable for a wide range of weather-related studies.
+
+In terms of the CARE principles, the dataset promotes collective benefit by contributing to community understanding of weather patterns and aiding in climate-related decision-making. It respects authority to control by being sourced from established meteorological records, ensuring data accuracy and reliability. Responsibility is upheld through ethical use, as the data contains no private or sensitive information. Finally, the dataset aligns with ethical standards, as it was collected transparently and with the intent to support public and scientific interests without causing harm.
+
+For our analysis, we will focus on a combination of attributes directly available in the dataset and additional attributes derived to enhance our insights. Key attributes include Temperature, which serves as a critical metric for identifying trends and fluctuations over time, and Precipitation, essential for assessing rainfall intensity and frequency. We will also examine Humidity to understand atmospheric moisture levels and its correlation with other variables, as well as Wind Speed and Wind Direction to analyze wind patterns and shifts in dominant directions. 
 
 ## Methodology
 
