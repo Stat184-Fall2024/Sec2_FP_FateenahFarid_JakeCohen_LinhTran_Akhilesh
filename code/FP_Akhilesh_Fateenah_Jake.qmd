@@ -26,7 +26,6 @@ Our investigation is guided by three research questions:
 ## Methodology
 
 ## Data Exploration
-![Figure 1.1: Avg Monthly Temperatures in 2019]('/Users/fateenahs./GitHub/Sec2_FP_FateenahFarid_JakeCohen_LinhTran_Akhilesh/data visualizations/Avg Monthly Temperatures in 2019, Newark.png'){fig-cap="Figure 1.1" width=50% fig-align="center"}
 
 ## References
 
