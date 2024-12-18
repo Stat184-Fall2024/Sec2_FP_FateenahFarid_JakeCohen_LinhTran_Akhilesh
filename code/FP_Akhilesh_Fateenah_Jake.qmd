@@ -47,10 +47,6 @@ For our analysis, we will focus on a combination of attributes directly availabl
 
 ## Methodology
 
-To conduct our analysis of weather patterns in Newark, New Jersey, for the years 2019 and 2023, we followed a structured approach that involved data cleaning, transformation, and visualization. We began by loading the relevant weather data sets from CSV files representing hourly weather records for each respective year. These data sets were then imported into R and prepared for analysis.
-The preprocessing phase involved normalizing key columns such as Time, Temperature, Humidity, and Precipitation to ensure consistency across both years. This included converting string representations (e.g., 'F' in temperature or '%' in humidity) into numerical values and converting the time column into a standard date-time format. These transformations allowed for seamless aggregation and analysis of monthly weather trends.
-We calculated the monthly average temperature for both years and visualized these trends using bar graphs. Additionally, we analyzed seasonal trends by defining seasons (Winter, Spring, Summer, Fall) based on month ranges and computed the average humidity by season. To compare trends across years, we created a combined data frame and visualized the differences using a grouped bar chart.
-Next, we focused on monthly precipitation analysis by calculating the average monthly precipitation for 2019 and 2023 and combining these results into a comparative table. We used the knitr package to generate a clean and intuitive summary table showing monthly differences in average precipitation. A line graph was created to illustrate the trends in monthly average precipitation, making it easy to compare the two years.
 ## Data Exploration
 
 ## References
