@@ -77,7 +77,7 @@ ggplot(monthlyAvg2019, aes(x = as.numeric(month), y = avg_temperature)) +
   scale_x_continuous(breaks = 1:12, labels = month.abb) +
   labs(title = "Average Monthly Temperatures in 2019, Newark",
        x = "Month",
-       y = "Average Temperature (°C)") +
+       y = "Average Temperature (°F)") +
   theme_minimal()
 
 # 4d. Generate bar graphs for Average Monthly Temperatures in Newark, 2023
@@ -86,7 +86,7 @@ ggplot(monthlyAvg2023, aes(x = as.numeric(month), y = avg_temperature)) +
   scale_x_continuous(breaks = 1:12, labels = month.abb) +
   labs(title = "Average Monthly Temperatures in 2023, Newark",
        x = "Month",
-       y = "Average Temperature (°C)") +
+       y = "Average Temperature (°F)") +
   theme_minimal()
 
 # 5a. Add a Season Column
